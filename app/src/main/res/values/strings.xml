@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Mortgage Application</string>
+
+    <string name="desc">Splash Logo</string>
+    <!-- Registration Screen -->
+    <string name="register_fullname_hint">Full Name</string>
+    <string name="register_email_hint">Email</string>
+    <string name="register_password_hint">Password</string>
+    <string name="register_confirmpassword_hint">Confirm Password</string>
+    <string name="register_button_label">Register</string>
+
+    <!-- Login Screen -->
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_button_label">Login</string>
+    <string name="register_redirect_button_label">Register</string>
+    <string name="borrowingAmount" translatable="false">Borrowing Amount: </string>
+    <string name="initialDeposit" translatable="false">Initial Deposit: </string>
+    <string name="mortgage_duration" translatable="false">Mortgage Duration: </string>
+
+    <string-array name="rangeInitialDeposit">
+        <item>10000</item>
+        <item>50000</item>
+        <item>100000</item>
+        <item>200000</item>
+        <item>300000</item>
+    </string-array>
+    <string name="monthlyPayment" translatable="false">Monthly Payment: </string>
+    <string name="totalAmount" translatable="false">Total Amount: </string>
+    <string name="addButton" translatable="false">Add</string>
+</resources>

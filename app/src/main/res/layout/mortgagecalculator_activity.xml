@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray">
+
+    <!-- TextView for Borrowing Amount -->
+    <TextView
+        android:id="@+id/borrowingAmountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/borrowingAmount"
+        android:textColor="@color/purple_500"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- SeekBar for Borrowing Amount -->
+    <SeekBar
+        android:id="@+id/borrowingAmountSeekBar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:progress="1"
+        android:scrollbarSize="4dp"
+        android:secondaryProgress="5"
+        app:layout_constraintStart_toStartOf="@id/borrowingAmountTextView"
+        app:layout_constraintEnd_toEndOf="@id/borrowingAmountTextView"
+        app:layout_constraintTop_toBottomOf="@id/borrowingAmountTextView"
+        app:layout_constraintBottom_toTopOf="@id/initialDepositTextView"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <!-- TextView for Initial Deposit -->
+    <TextView
+        android:id="@+id/initialDepositTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/initialDeposit"
+        android:textColor="@color/purple_500"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/borrowingAmountSeekBar"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- SeekBar for Deposit -->
+    <SeekBar
+        android:id="@+id/depositSeekBar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:progress="1"
+        android:scrollbarSize="4dp"
+        android:secondaryProgress="1000"
+        app:layout_constraintStart_toStartOf="@id/initialDepositTextView"
+        app:layout_constraintEnd_toEndOf="@id/initialDepositTextView"
+        app:layout_constraintTop_toBottomOf="@id/initialDepositTextView"
+        app:layout_constraintBottom_toTopOf="@id/mortgageDurationTextView"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <!-- TextView for Mortgage Duration -->
+    <TextView
+        android:id="@+id/mortgageDurationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mortgage_duration"
+        android:textColor="@color/purple_500"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/depositSeekBar"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- SeekBar for Mortgage Duration -->
+    <SeekBar
+        android:id="@+id/mortgageDurationSeekBar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:max="30"
+        android:progress="5"
+        android:scrollbarSize="4dp"
+        android:secondaryProgress="0"
+        app:layout_constraintStart_toStartOf="@id/mortgageDurationTextView"
+        app:layout_constraintEnd_toEndOf="@id/mortgageDurationTextView"
+        app:layout_constraintTop_toBottomOf="@id/mortgageDurationTextView"
+        app:layout_constraintBottom_toTopOf="@id/monthlyPaymentTextView"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <!-- TextView for Monthly Payment -->
+    <TextView
+        android:id="@+id/monthlyPaymentTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/monthlyPayment"
+        android:textColor="@color/purple_500"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mortgageDurationSeekBar"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- TextView for Total Amount -->
+    <TextView
+        android:id="@+id/totalAmountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/totalAmount"
+        android:textColor="@color/purple_500"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/monthlyPaymentTextView"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Button for Add -->
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/addButton"
+        android:textColor="@color/white"
+        android:background="@drawable/button_background"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/totalAmountTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
