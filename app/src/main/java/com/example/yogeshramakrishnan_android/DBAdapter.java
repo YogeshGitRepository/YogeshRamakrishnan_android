@@ -5,10 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBAdapter {
-    DatabaseHelper myHelper;
+    DBHelper myHelper;
     public DBAdapter(Context context)
     {
-        myHelper = new DatabaseHelper(context);
+        myHelper = new DBHelper(context);
     }
     static class DatabaseHelper extends SQLiteOpenHelper {
         private static final String dbName = "myDBName";
