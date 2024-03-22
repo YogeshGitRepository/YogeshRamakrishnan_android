@@ -12,11 +12,15 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
     private Button loginButton, registerRedirectButton;
+    private DBAdapter dbAdapter; // Declare your DBAdapter
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
+
+        // Initialize your DBAdapter
+        dbAdapter = new DBAdapter(this);
 
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
@@ -31,13 +35,11 @@ public class LoginActivity extends AppCompatActivity {
 
                 // Check if email and password are not empty
                 if (!email.isEmpty() && !password.isEmpty()) {
-                    // Here you can perform your login authentication
-                    // For demonstration purposes, let's assume a hardcoded email and password
-                    String validEmail = email;
-                    String validPassword = password;
+                    // Call the checkData method to validate credentials
+                    long dataFound = dbAdapter.checkData(email, password);
 
-                    // Check if the entered credentials match the valid ones
-                    if (email.equals(validEmail) && password.equals(validPassword)) {
+                    // Check if data is found
+                    if (dataFound > 0) {
                         // If credentials are valid, you can proceed with login
                         // For example, you can start the main activity
                         startActivity(new Intent(LoginActivity.this, MortgageCalculatorActivity.class));
@@ -53,7 +55,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
         registerRedirectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,4 +63,3 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 }
-

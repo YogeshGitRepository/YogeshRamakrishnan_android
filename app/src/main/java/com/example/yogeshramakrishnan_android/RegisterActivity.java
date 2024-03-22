@@ -7,12 +7,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.yogeshramakrishnan_android.DBAdapter;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText fullNameEditText, emailEditText, passwordEditText, confirmPasswordEditText;
     private Button registerButton;
-
+    private DBAdapter dbAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText);
         registerButton = findViewById(R.id.registerButton);
-
+        dbAdapter = new DBAdapter(this);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,12 +60,16 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        // TODO: Implement registration logic (e.g., using Firebase Authentication)
-
-        // Registration successful, redirect to login activity
-        Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-        finish();
+        //  Implement registration logic
+        long result = dbAdapter.signUp(fullName,email, password,confirmPassword);
+        if (result != -1) {
+            Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
+            // Registration successful, redirect to login activity
+            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            finish();
+        } else {
+            Toast.makeText(RegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
+        }
     }
 }
 
