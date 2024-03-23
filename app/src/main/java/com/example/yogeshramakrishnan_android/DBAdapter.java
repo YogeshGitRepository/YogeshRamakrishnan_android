@@ -60,12 +60,12 @@ public class DBAdapter {
         return dBase.insert(myHelper.tableName, null, dataValues);
     }
 
-    public long checkData(String username, String password) {
+    public long checkData(String email, String password) {
         SQLiteDatabase dBase = myHelper.getWritableDatabase();
-        String[] dataColumn = {myHelper.userName, myHelper.userPassword};
-        String[] recordArgs = {username, password}; // Pass both username and password as arguments
+        String[] dataColumn = {myHelper.userEmail, myHelper.userPassword};
+        String[] recordArgs = {email, password}; // Pass both username and password as arguments
         long dataFound = 0;
-        Cursor cursor = dBase.query(myHelper.tableName, null, myHelper.userName + " = ? AND " + myHelper.userPassword + " = ?", recordArgs, null, null, null);
+        Cursor cursor = dBase.query(myHelper.tableName, null, myHelper.userEmail + " = ? AND " + myHelper.userPassword + " = ?", recordArgs, null, null, null);
         if (cursor.getCount() > 0) {
             dataFound = 1;
         }
