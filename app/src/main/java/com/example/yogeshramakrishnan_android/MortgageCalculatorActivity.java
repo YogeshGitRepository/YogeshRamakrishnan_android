@@ -1,11 +1,19 @@
 package com.example.yogeshramakrishnan_android;
 
 import static java.lang.String.*;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.view.View;
+import android.widget.Toast;
+
 
 public class MortgageCalculatorActivity extends AppCompatActivity {
 
@@ -14,7 +22,8 @@ public class MortgageCalculatorActivity extends AppCompatActivity {
     private SeekBar durationSeekBar;
     private TextView monthlyPaymentTextView;
     private TextView totalAmountTextView;
-
+    private Button addButton;
+    private DBAdapter dbAdapter;
 
 
     @Override
@@ -27,16 +36,38 @@ public class MortgageCalculatorActivity extends AppCompatActivity {
         durationSeekBar = findViewById(R.id.mortgageDurationSeekBar);
         monthlyPaymentTextView = findViewById(R.id.monthlyPaymentTextView);
         totalAmountTextView = findViewById(R.id.totalAmountTextView);
+        addButton = findViewById(R.id.addButton);
 
-
+        // Initialize database adapter
+        dbAdapter = new DBAdapter(this);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveMortgage(); // Call method to save mortgage calculation
+            }
+        });
+        TextView tooltipTextView = findViewById(R.id.tooltipTextView);
+        calculateMortgage();
         borrowSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progressValue = 0;
+            @RequiresApi(api = Build.VERSION_CODES.O)
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressValue = progress;
+
+
+                // Display the tooltip TextView with updated text
+                tooltipTextView.setText("£" + (progress * 1000));
+                tooltipTextView.setVisibility(View.VISIBLE);
+
+
                 calculateMortgage();
             }
             public void onStartTrackingTouch(SeekBar seekBar) {}
-            public void onStopTrackingTouch(SeekBar seekBar) {calculateMortgage();}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // Hide the tooltip when tracking touch stops
+                tooltipTextView.setVisibility(View.GONE);
+                calculateMortgage();
+            }
         });
         depositSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progressValue = 0;
@@ -56,6 +87,8 @@ public class MortgageCalculatorActivity extends AppCompatActivity {
             public void onStartTrackingTouch(SeekBar seekBar) {}
             public void onStopTrackingTouch(SeekBar seekBar) {calculateMortgage();}
         });
+
+
 
     }
     // Handle mortgage calculation logic and UI updates
@@ -81,11 +114,47 @@ public class MortgageCalculatorActivity extends AppCompatActivity {
         double totalAmount = monthlyPayment * numberOfMonths;
 
         monthlyPaymentTextView.setText(format("Monthly Payment: £%.2f", monthlyPayment));
-        totalAmountTextView.setText(format("Total Amount: £%.2f", totalAmount));
-        // Update TextViews with calculated values
+     totalAmountTextView.setText(format("Total Amount: £%.2f", totalAmount));
 
     }
-/*//    public void addOnclick (View view){
-//        connect = new DBAdapter(this);
-//    }*/
+    private void saveMortgage() {
+        // Get the mortgage details
+        double borrowingAmount = borrowSeekBar.getProgress();
+        double depositAmount = depositSeekBar.getProgress();
+        double mortgageDuration = durationSeekBar.getProgress();
+
+        String monthlyPaymentText = monthlyPaymentTextView.getText().toString();
+        String totalAmountText = totalAmountTextView.getText().toString();
+
+        monthlyPaymentText = monthlyPaymentText.replace("Monthly Payment: £", "");
+        totalAmountText = totalAmountText.replace("Total Amount: £", "");
+
+
+            double monthlyPayment = Double.parseDouble(monthlyPaymentText);
+            double totalAmount = Double.parseDouble(totalAmountText);
+
+
+        String userEmail = getIntent().getStringExtra("useremail");
+
+
+        int currentUserId = dbAdapter.getUserIdByEmail(userEmail);
+        String currentUserName = dbAdapter.getUserNameByEmail(userEmail);
+        long result = dbAdapter.insertMortgage(currentUserId,currentUserName,borrowingAmount,depositAmount,mortgageDuration,monthlyPayment, totalAmount);
+
+        if (result != -1) {
+            Toast.makeText(this, "Mortgage calculation saved successfully!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MortgageCalculatorActivity.this, MortgageResultActivity.class);
+            intent.putExtra("currentUserName", currentUserName);
+            intent.putExtra("borrowingAmount", borrowingAmount);
+            intent.putExtra("depositAmount", depositAmount);
+            intent.putExtra("mortgageDuration", mortgageDuration);
+            intent.putExtra("monthlyPayment", monthlyPayment);
+            intent.putExtra("totalAmount", totalAmount);
+
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Failed to save mortgage calculation!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

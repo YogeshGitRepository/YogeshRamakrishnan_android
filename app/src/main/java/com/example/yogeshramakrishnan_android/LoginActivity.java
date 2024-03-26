@@ -42,8 +42,10 @@ public class LoginActivity extends AppCompatActivity {
                     if (dataFound > 0) {
                         // If credentials are valid, you can proceed with login
                         // For example, you can start the main activity
-                        startActivity(new Intent(LoginActivity.this, MortgageCalculatorActivity.class));
-                        finish(); // Close the login activity
+                        Intent intent = new Intent(LoginActivity.this, MortgageCalculatorActivity.class);
+                        intent.putExtra("useremail", email);
+                        startActivity(intent);
+
                     } else {
                         // If credentials are invalid, show an error message
                         Toast.makeText(LoginActivity.this, "Invalid email or password", Toast.LENGTH_SHORT).show();

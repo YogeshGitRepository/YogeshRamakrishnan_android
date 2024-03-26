@@ -14,9 +14,9 @@
     <string name="login_password_hint">Password</string>
     <string name="login_button_label">Login</string>
     <string name="register_redirect_button_label">Register</string>
-    <string name="borrowingAmount" translatable="false">Borrowing Amount: </string>
-    <string name="initialDeposit" translatable="false">Initial Deposit: </string>
-    <string name="mortgage_duration" translatable="false">Mortgage Duration: </string>
+    <string name="borrowingAmount" translatable="false">Borrowing Amount (£)</string>
+    <string name="initialDeposit" translatable="false">Initial Deposit (£)</string>
+    <string name="mortgageDuration" translatable="false">Mortgage Duration (years)</string>
 
     <string-array name="rangeInitialDeposit">
         <item>10000</item>
