@@ -55,7 +55,20 @@
                 android:text="Total Amount: £0.00"
                 android:textSize="18sp" />
 
+            <TextView
+                android:id="@+id/InterestRateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="InterestRate: 0.00"
+                android:textSize="18sp" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/backHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/backHome" />
 
 </LinearLayout>

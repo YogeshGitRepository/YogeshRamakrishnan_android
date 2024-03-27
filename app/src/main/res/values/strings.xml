@@ -28,4 +28,9 @@
     <string name="monthlyPayment" translatable="false">Monthly Payment: </string>
     <string name="totalAmount" translatable="false">Total Amount: </string>
     <string name="addButton" translatable="false">Add</string>
+    <string name="interestRate" translatable="false">Interest Rate %: </string>
+
+    <string name="btnFinan" >Financial Data</string>
+    <string name="btnMort" >Mortgage Calculator</string>
+    <string name="backHome" >Back To Home Page</string>
 </resources>

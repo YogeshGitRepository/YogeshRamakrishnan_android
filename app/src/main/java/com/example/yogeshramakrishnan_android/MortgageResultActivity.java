@@ -2,11 +2,14 @@ package com.example.yogeshramakrishnan_android;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MortgageResultActivity extends AppCompatActivity {
-
+    private Button btnbackHome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,13 +21,14 @@ public class MortgageResultActivity extends AppCompatActivity {
         double mortgageDuration = getIntent().getDoubleExtra("mortgageDuration", 0);
         double monthlyPayment = getIntent().getDoubleExtra("monthlyPayment", 0);
         double totalAmount = getIntent().getDoubleExtra("totalAmount", 0);
-
+        double interestRate = getIntent().getDoubleExtra("InterestRate", 0);
         TextView currentUserNameTextView = findViewById(R.id.currentUserNameTextView);
         TextView borrowingAmountTextView = findViewById(R.id.borrowingAmountTextView);
         TextView depositAmountTextView = findViewById(R.id.depositAmountTextView);
         TextView mortgageDurationTextView = findViewById(R.id.mortgageDurationTextView);
         TextView monthlyPaymentTextView = findViewById(R.id.monthlyPaymentTextView);
         TextView totalAmountTextView = findViewById(R.id.totalAmountTextView);
+        TextView InterestRateTextView= findViewById(R.id.InterestRateTextView);
 
         currentUserNameTextView.setText(String.format("Customer Name: %s", currentUserName));
         borrowingAmountTextView.setText(String.format("Borrowing Amount: £%.2f", borrowingAmount));
@@ -32,6 +36,14 @@ public class MortgageResultActivity extends AppCompatActivity {
         mortgageDurationTextView.setText(String.format("Mortgage Duration: £%.2f", mortgageDuration));
         monthlyPaymentTextView.setText(String.format("Monthly Payment: £%.2f", monthlyPayment));
         totalAmountTextView.setText(String.format("Total Amount: £%.2f", totalAmount));
+        InterestRateTextView.setText(String.format("Interest Rate : %s", interestRate));
+        btnbackHome = findViewById(R.id.backHome);
+        btnbackHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MortgageResultActivity.this, HomeActivity.class));
+            }
+        });
     }
 }
 

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/takeHomeWageEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Average Monthly Take Home Wage"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/fixedOutgoingsEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Fixed Monthly Outgoings"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/currentRentOrMortgageEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Current Monthly Rent or Mortgage"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/leftoverWageEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Amount Leftover at the End of the Month"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/borrowAmountEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Default Borrow Amount"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/depositAmountEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Default Deposit Amount"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Financial Data" />
+
+</LinearLayout>

@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (dataFound > 0) {
                         // If credentials are valid, you can proceed with login
                         // For example, you can start the main activity
-                        Intent intent = new Intent(LoginActivity.this, MortgageCalculatorActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         intent.putExtra("useremail", email);
                         startActivity(intent);
 

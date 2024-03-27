@@ -22,6 +22,7 @@ public class MortgageCalculatorActivity extends AppCompatActivity {
     private SeekBar durationSeekBar;
     private TextView monthlyPaymentTextView;
     private TextView totalAmountTextView;
+    private TextView  InterestRateTextView;
     private Button addButton;
     private DBAdapter dbAdapter;
 
@@ -116,6 +117,27 @@ public class MortgageCalculatorActivity extends AppCompatActivity {
         monthlyPaymentTextView.setText(format("Monthly Payment: £%.2f", monthlyPayment));
      totalAmountTextView.setText(format("Total Amount: £%.2f", totalAmount));
 
+        InterestRateTextView = findViewById(R.id.InterestRateTextView);
+
+        InterestRateTextView.setText(format("Rate of Interest: %s", calculateInterestRate(depositAmount)));
+
+
+    }
+    private double calculateInterestRate(double depositAmount) {
+        // Calculate interest rate based on deposit percentage
+        double borrowAmount = borrowSeekBar.getProgress();
+
+        if (depositAmount < 0.05 * borrowAmount) {
+            return 0; // Deposits under 5% not permitted
+        } else if (depositAmount < 0.1 * borrowAmount) {
+            return 0.06; // Interest rate for 5-9% deposit
+        } else if (depositAmount < 0.21 * borrowAmount) {
+            return 0.04; // Interest rate for 10-20% deposit
+        } else if (depositAmount < 0.31 * borrowAmount) {
+            return 0.03; // Interest rate for 21-30% deposit
+        } else {
+            return 0.023; // Interest rate for 31%+ deposit
+        }
     }
     private void saveMortgage() {
         // Get the mortgage details
@@ -125,21 +147,20 @@ public class MortgageCalculatorActivity extends AppCompatActivity {
 
         String monthlyPaymentText = monthlyPaymentTextView.getText().toString();
         String totalAmountText = totalAmountTextView.getText().toString();
-
+        String InterestRateText =   InterestRateTextView.getText().toString();
         monthlyPaymentText = monthlyPaymentText.replace("Monthly Payment: £", "");
         totalAmountText = totalAmountText.replace("Total Amount: £", "");
+        InterestRateText = InterestRateText.replace("Rate of Interest: ", "");
 
-
-            double monthlyPayment = Double.parseDouble(monthlyPaymentText);
-            double totalAmount = Double.parseDouble(totalAmountText);
-
+        double monthlyPayment = Double.parseDouble(monthlyPaymentText);
+        double totalAmount = Double.parseDouble(totalAmountText);
+        double InterestRate = Double.parseDouble(InterestRateText);
 
         String userEmail = getIntent().getStringExtra("useremail");
-
-
         int currentUserId = dbAdapter.getUserIdByEmail(userEmail);
         String currentUserName = dbAdapter.getUserNameByEmail(userEmail);
-        long result = dbAdapter.insertMortgage(currentUserId,currentUserName,borrowingAmount,depositAmount,mortgageDuration,monthlyPayment, totalAmount);
+
+        long result = dbAdapter.insertMortgage(currentUserId,currentUserName,borrowingAmount,depositAmount,mortgageDuration,monthlyPayment, totalAmount,InterestRate);
 
         if (result != -1) {
             Toast.makeText(this, "Mortgage calculation saved successfully!", Toast.LENGTH_SHORT).show();
@@ -150,6 +171,7 @@ public class MortgageCalculatorActivity extends AppCompatActivity {
             intent.putExtra("mortgageDuration", mortgageDuration);
             intent.putExtra("monthlyPayment", monthlyPayment);
             intent.putExtra("totalAmount", totalAmount);
+            intent.putExtra("InterestRate", InterestRate);
 
             startActivity(intent);
         } else {
