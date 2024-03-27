@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         intent.putExtra("useremail", email);
                         startActivity(intent);
-
+                        Toast.makeText(LoginActivity.this, "login succeeded", Toast.LENGTH_SHORT).show();
                     } else {
                         // If credentials are invalid, show an error message
                         Toast.makeText(LoginActivity.this, "Invalid email or password", Toast.LENGTH_SHORT).show();

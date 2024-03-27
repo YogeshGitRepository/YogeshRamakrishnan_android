@@ -6,10 +6,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.tabs.TabLayout;
 
 public class HomeActivity  extends AppCompatActivity{
-    private Button financialData, mortgageCalc;
+    private Button financialData, mortgageCalc,signOutButton;
     private DBAdapter dbAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +21,7 @@ public class HomeActivity  extends AppCompatActivity{
 
         financialData = findViewById(R.id.financialData);
         mortgageCalc = findViewById(R.id.mortgageCalc);
+        signOutButton = findViewById(R.id.signOutButton);
 
         String userEmail = getIntent().getStringExtra("useremail");
 
@@ -37,6 +40,14 @@ public class HomeActivity  extends AppCompatActivity{
                 intent.putExtra("useremail", userEmail);
                 startActivity(intent);
                  }
+        });
+        signOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+             //   intent.putExtra("useremail", userEmail);
+                startActivity(intent);
+            }
         });
     }
 }

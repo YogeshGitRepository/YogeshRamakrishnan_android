@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_gray">#d3d3d3</color>
     <color name="button_background">#87CEEB</color>
+    <color name="transparent">#00000000</color>
+    <color name="highlight_color">#FF4081</color>
+    <color name="matteBlue">#2c6fbb</color>
+    <color name="silver">#C0C0C0</color>
 </resources>

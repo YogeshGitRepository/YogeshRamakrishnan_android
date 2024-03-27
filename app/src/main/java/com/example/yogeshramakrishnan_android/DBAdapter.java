@@ -54,7 +54,7 @@ public class DBAdapter {
         public DBHelper(Context context) {
             super(context, dbName, null, dbVersion);
             this.context = context;
-            SystemMessage.showMessage(context, "Database created");
+           // SystemMessage.showMessage(context, "Database created");
         }
 
         @Override
@@ -64,7 +64,7 @@ public class DBAdapter {
                 db.execSQL(createTableMortage);
                 db.execSQL(createTableFinancial);
             } catch (Exception e) {
-                SystemMessage.showMessage(context, "" + e);
+                //SystemMessage.showMessage(context, "" + e);
             }
         }
 
@@ -74,7 +74,7 @@ public class DBAdapter {
                 db.execSQL(dropTable);
                 onCreate(db);
             } catch (Exception e) {
-                SystemMessage.showMessage(context, "" + e);
+                //SystemMessage.showMessage(context, "" + e);
             }
         }
     }

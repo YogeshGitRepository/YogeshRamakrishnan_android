@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/calculator"
+        android:scaleType="centerCrop"
+        android:alpha="0.4" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray">
+    android:background="@color/transparent">
+
 
     <TextView
         android:id="@+id/borrowingAmountTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="80dp"
         android:text="@string/borrowingAmount"
         android:textColor="@color/purple_500"
@@ -19,43 +30,51 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tooltipTextborrowfrom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/tooltiptop"
         android:padding="8dp"
+        android:text="£50"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
         android:textStyle="bold"
-        android:text="£50"
-        app:layout_constraintEnd_toStartOf="@id/borrowingAmountSeekBar"
-        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@id/borrowingAmountSeekBar"
-        android:visibility="visible" />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.026"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.945" />
 
     <TextView
         android:id="@+id/tooltipTextborrowto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="52dp"
+        android:layout_height="31dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/tooltiptop"
         android:padding="8dp"
+        android:text="£800k"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
         android:textStyle="bold"
-        android:text="£800k"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/borrowingAmountSeekBar"
-        app:layout_constraintBottom_toTopOf="@id/borrowingAmountSeekBar"
-        android:visibility="visible" />
+        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.174" />
 
     <SeekBar
         android:id="@+id/borrowingAmountSeekBar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="56dp"
         android:max="751"
         android:progress="50"
         android:scrollbarSize="4dp"
@@ -63,8 +82,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/borrowingAmountTextView"
-        />
+        app:layout_constraintTop_toBottomOf="@id/borrowingAmountTextView" />
+
     <TextView
         android:id="@+id/tooltipTextView"
         android:layout_width="wrap_content"
@@ -80,54 +99,63 @@
         android:visibility="gone"/>
 
 
+    <!-- TooltipTextView23 aligned to the right -->
+
     <TextView
         android:id="@+id/depositTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="28dp"
         android:text="@string/initialDeposit"
         android:textColor="@color/purple_500"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/borrowingAmountSeekBar" />
+
     <TextView
         android:id="@+id/tooltipTextdepositfrom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="33dp"
         android:background="@drawable/tooltiptop"
         android:padding="8dp"
+        android:text="£5"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
         android:textStyle="bold"
-        android:text="£5"
-        app:layout_constraintEnd_toStartOf="@id/depositSeekBar"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tooltipTextdepositto"
+        app:layout_constraintHorizontal_bias="0.028"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/depositSeekBar"
-        android:visibility="visible" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.34" />
 
-    <!-- TooltipTextView23 aligned to the right -->
     <TextView
         android:id="@+id/tooltipTextdepositto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/tooltiptop"
         android:padding="8dp"
+        android:text="£300k"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
         android:textStyle="bold"
-        android:text="£300k"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/depositSeekBar"
-        app:layout_constraintBottom_toTopOf="@id/depositSeekBar"
-        android:visibility="visible" />
+        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.34" />
+
     <SeekBar
         android:id="@+id/depositSeekBar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:max="296"
         android:progress="5"
         android:scrollbarSize="4dp"
@@ -136,6 +164,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/depositTextView" />
+
     <TextView
         android:id="@+id/tooltipTextView1"
         android:layout_width="wrap_content"
@@ -149,11 +178,16 @@
         app:layout_constraintStart_toStartOf="@id/depositSeekBar"
         app:layout_constraintTop_toBottomOf="@id/depositSeekBar"
         android:visibility="gone"/>
+
+    <!-- SeekBar for Mortgage Duration -->
+
+    <!-- TooltipTextView23 aligned to the right -->
     <TextView
         android:id="@+id/mortgageDurationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="32dp"
         android:text="@string/mortgageDuration"
         android:textColor="@color/purple_500"
         android:textSize="18sp"
@@ -161,43 +195,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/depositSeekBar" />
 
-    <!-- SeekBar for Mortgage Duration -->
     <TextView
         android:id="@+id/tooltipTextDurationfrom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/tooltiptop"
         android:padding="8dp"
+        android:text="5 Years"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
         android:textStyle="bold"
-        android:text="5 Years"
-        app:layout_constraintEnd_toStartOf="@id/mortgageDurationSeekBar"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tooltipTextDurationto"
+        app:layout_constraintHorizontal_bias="0.029"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/mortgageDurationSeekBar"
-        android:visibility="visible" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.513" />
 
-    <!-- TooltipTextView23 aligned to the right -->
     <TextView
         android:id="@+id/tooltipTextDurationto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/tooltiptop"
         android:padding="8dp"
+        android:text="30 Years"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
         android:textStyle="bold"
-        android:text="30 Years"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/mortgageDurationSeekBar"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@id/mortgageDurationSeekBar"
-        android:visibility="visible" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.988"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.972" />
+
     <SeekBar
         android:id="@+id/mortgageDurationSeekBar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="48dp"
         android:max="26"
         android:progress="5"
         android:scrollbarSize="4dp"
@@ -206,6 +245,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mortgageDurationTextView" />
+
     <TextView
         android:id="@+id/tooltipTextView2"
         android:layout_width="wrap_content"
@@ -219,13 +259,14 @@
         app:layout_constraintStart_toStartOf="@id/mortgageDurationSeekBar"
         app:layout_constraintTop_toBottomOf="@id/mortgageDurationSeekBar"
         android:visibility="gone"/>
+
     <TextView
         android:id="@+id/monthlyPaymentTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="44dp"
         android:text="@string/monthlyPayment"
-        android:textColor="@color/purple_500"
+        android:textColor="@color/cardview_dark_background"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -237,21 +278,21 @@
         android:id="@+id/totalAmountTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="24dp"
         android:text="@string/totalAmount"
-        android:textColor="@color/purple_500"
+        android:textColor="@color/cardview_dark_background"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.255"
+        app:layout_constraintHorizontal_bias="0.313"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/monthlyPaymentTextView" />
 
     <Button
         android:id="@+id/addButton"
-        android:layout_width="102dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="155dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="68dp"
         android:background="@drawable/button_background"
         android:paddingStart="24dp"
         android:paddingTop="12dp"
@@ -261,23 +302,25 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/totalAmountTextView" />
+        app:layout_constraintTop_toBottomOf="@id/totalAmountTextView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/InterestRateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="68dp"
         android:text="@string/interestRate"
-        android:textColor="@color/purple_500"
+        android:textColor="@color/cardview_dark_background"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.221"
+        app:layout_constraintHorizontal_bias="0.284"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/monthlyPaymentTextView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

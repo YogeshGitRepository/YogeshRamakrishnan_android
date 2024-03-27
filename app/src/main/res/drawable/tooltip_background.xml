@@ -2,5 +2,5 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
     <solid android:color="#323232" /> <!-- Background color for the tooltip -->
-    <corners android:radius="8dp" /> <!-- Adjust the radius for rounded corners -->
+    <corners android:radius="6dp" /> <!-- Adjust the radius for rounded corners -->
 </shape>

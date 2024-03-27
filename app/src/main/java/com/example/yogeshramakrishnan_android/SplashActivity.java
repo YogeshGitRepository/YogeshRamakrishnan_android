@@ -2,6 +2,8 @@ package com.example.yogeshramakrishnan_android;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashActivity extends AppCompatActivity {
@@ -22,6 +24,7 @@ public class SplashActivity extends AppCompatActivity {
                 Intent mainIntent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(mainIntent);
                 finish(); // Close the splash screen activity to prevent the user from going back to it
+
             }
         }, SPLASH_DISPLAY_LENGTH);
     }

@@ -69,6 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
             intent.putExtra("useremail", email);
             startActivity(intent);
             finish();
+            Toast.makeText(RegisterActivity.this, "Registration succeeded", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(RegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
         }

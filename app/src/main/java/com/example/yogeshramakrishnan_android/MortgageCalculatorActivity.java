@@ -180,7 +180,7 @@ public class MortgageCalculatorActivity extends AppCompatActivity {
         long result = dbAdapter.insertMortgage(currentUserId,currentUserName,borrowingAmount,depositAmount,mortgageDuration,monthlyPayment, totalAmount,InterestRate);
 
         if (result != -1) {
-            Toast.makeText(this, "Mortgage calculation saved successfully!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Mortgage calculation saved!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MortgageCalculatorActivity.this, MortgageResultActivity.class);
             intent.putExtra("currentUserName", currentUserName);
             intent.putExtra("borrowingAmount", borrowingAmount);
