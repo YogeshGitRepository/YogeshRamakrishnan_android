@@ -26,9 +26,9 @@ public class FinancialDataAdapter extends RecyclerView.Adapter<FinancialDataAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        FinancialData financialData = financialDataList.get(position);
-        holder.labelTextView.setText(financialData.getLabel());
-        holder.valueTextView.setText(String.valueOf(financialData.getValue()));
+      FinancialData financialData = financialDataList.get(position);
+      holder.labelTextView.setText(financialData.getLabel());
+      holder.valueTextView.setText(String.valueOf(financialData.getValue()));
     }
 
     @Override

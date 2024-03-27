@@ -78,11 +78,62 @@ public class DBAdapter {
             }
         }
     }
+    // Method to update financial data
+    public boolean updateFinancialData(int financialDataId, double takeHomeWage, double fixedOutgoings, double currentRentOrMortgage, double leftoverWage, double borrowAmount, double depositAmount) {
+        SQLiteDatabase dBase = myHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DBHelper.take_home_wage, takeHomeWage);
+        values.put(DBHelper.fixed_outgoings, fixedOutgoings);
+        values.put(DBHelper.current_rent_or_mortgage, currentRentOrMortgage);
+        values.put(DBHelper.leftover_wage, leftoverWage);
+        values.put(DBHelper.default_borrow_amount, borrowAmount);
+        values.put(DBHelper.default_deposit_amount, depositAmount);
+        // Updating row
+        int rowsAffected = dBase.update(DBHelper.tableNameFinancial, values, DBHelper.userId + " = ?", new String[]{String.valueOf(financialDataId)});
+        return rowsAffected > 0;
+    }
+
+    // Method to delete financial data
+    public boolean deleteFinancialData(int financialDataId) {
+        SQLiteDatabase dBase = myHelper.getWritableDatabase();
+        // Deleting row
+        int rowsAffected = dBase.delete(DBHelper.tableNameFinancial, DBHelper.userId + " = ?", new String[]{String.valueOf(financialDataId)});
+        return rowsAffected > 0;
+    }
     public Cursor getAllFinancialData() {
         SQLiteDatabase dBase = myHelper.getReadableDatabase();
         return dBase.query("FinancialData", null, null, null, null, null, null);
     }
-
+    public boolean financialDataExists(int userId) {
+        SQLiteDatabase dBase = myHelper.getReadableDatabase();
+        String selection = DBHelper.userId + " = ?";
+        String[] selectionArgs = { String.valueOf(userId) };
+        Cursor cursor = dBase.query(DBHelper.tableNameFinancial, null, selection, selectionArgs, null, null, null);
+        boolean dataExists = cursor != null && cursor.getCount() > 0;
+        if (cursor != null) {
+            cursor.close();
+        }
+        return dataExists;
+    }
+    public FinancialDataMain getFinancialData(int userId) {
+        SQLiteDatabase dBase = myHelper.getReadableDatabase();
+        FinancialDataMain financialData = null;
+        String[] columns = {DBHelper.take_home_wage, DBHelper.fixed_outgoings, DBHelper.current_rent_or_mortgage, DBHelper.leftover_wage, DBHelper.default_borrow_amount, DBHelper.default_deposit_amount};
+        String selection = userId + " = ?";
+        String[] selectionArgs = {String.valueOf(userId)};
+        Cursor cursor = dBase.query(DBHelper.tableNameFinancial, columns, selection, selectionArgs, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            double takeHomeWage = cursor.getDouble(cursor.getColumnIndexOrThrow(DBHelper.take_home_wage));
+            double fixedOutgoings = cursor.getDouble(cursor.getColumnIndexOrThrow(DBHelper.fixed_outgoings));
+            double currentRentOrMortgage = cursor.getDouble(cursor.getColumnIndexOrThrow(DBHelper.current_rent_or_mortgage));
+            double leftoverWage = cursor.getDouble(cursor.getColumnIndexOrThrow(DBHelper.leftover_wage));
+            double defaultBorrowAmount = cursor.getDouble(cursor.getColumnIndexOrThrow(DBHelper.default_borrow_amount));
+            double defaultDepositAmount = cursor.getDouble(cursor.getColumnIndexOrThrow(DBHelper.default_deposit_amount));
+            financialData = new FinancialDataMain(takeHomeWage, fixedOutgoings, currentRentOrMortgage, leftoverWage, defaultBorrowAmount, defaultDepositAmount);
+            cursor.close();
+        }
+        return financialData;
+    }
     public long insertFinancialData(int userId,double take_home_wage,double fixed_outgoings,double current_rent_or_mortgage,double leftover_wage,double default_borrow_amount,double default_deposit_amount) {
         SQLiteDatabase dBase = myHelper.getWritableDatabase();
         ContentValues values = new ContentValues();

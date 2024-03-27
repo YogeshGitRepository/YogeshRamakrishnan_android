@@ -52,5 +52,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save Financial Data" />
+    <Button
+        android:id="@+id/updateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Financial Data" />
 
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Financial Data" />
 </LinearLayout>
