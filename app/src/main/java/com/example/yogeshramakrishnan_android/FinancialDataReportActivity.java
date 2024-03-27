@@ -78,7 +78,12 @@ public class FinancialDataReportActivity  extends AppCompatActivity {
         btnbackHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(FinancialDataReportActivity.this, HomeActivity.class));
+
+                Intent intent = new Intent(FinancialDataReportActivity.this, HomeActivity.class);
+                String userEmail = getIntent().getStringExtra("useremail");
+                intent.putExtra("useremail", userEmail);
+                startActivity(intent);
+
             }
         });
     }

@@ -25,7 +25,7 @@ public class MortgageCalculatorActivity extends AppCompatActivity {
     private TextView  InterestRateTextView;
     private Button addButton;
     private DBAdapter dbAdapter;
-
+    private TextView tooltipTextView,tooltipTextView1,tooltipTextView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,9 @@ public class MortgageCalculatorActivity extends AppCompatActivity {
         monthlyPaymentTextView = findViewById(R.id.monthlyPaymentTextView);
         totalAmountTextView = findViewById(R.id.totalAmountTextView);
         addButton = findViewById(R.id.addButton);
-
+        tooltipTextView = findViewById(R.id.tooltipTextView);
+        tooltipTextView1 = findViewById(R.id.tooltipTextView1);
+        tooltipTextView2 = findViewById(R.id.tooltipTextView2);
         // Initialize database adapter
         dbAdapter = new DBAdapter(this);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -47,46 +49,57 @@ public class MortgageCalculatorActivity extends AppCompatActivity {
                 saveMortgage(); // Call method to save mortgage calculation
             }
         });
-        TextView tooltipTextView = findViewById(R.id.tooltipTextView);
+
         calculateMortgage();
         borrowSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progressValue = 0;
+
             @RequiresApi(api = Build.VERSION_CODES.O)
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressValue = progress;
-
-
                 // Display the tooltip TextView with updated text
-                tooltipTextView.setText("£" + (progress * 1000));
+
+                tooltipTextView.setText("£" + (progress)+ "K");
                 tooltipTextView.setVisibility(View.VISIBLE);
-
-
                 calculateMortgage();
             }
             public void onStartTrackingTouch(SeekBar seekBar) {}
             public void onStopTrackingTouch(SeekBar seekBar) {
                 // Hide the tooltip when tracking touch stops
-                tooltipTextView.setVisibility(View.GONE);
+                tooltipTextView.setVisibility(View.VISIBLE);
                 calculateMortgage();
             }
         });
         depositSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progressValue = 0;
+            @RequiresApi(api = Build.VERSION_CODES.O)
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressValue = progress;
+                // Display the tooltip TextView with updated text
+
+                tooltipTextView1.setText("£" + (progress) + "K");
+                tooltipTextView1.setVisibility(View.VISIBLE);
                 calculateMortgage();
             }
             public void onStartTrackingTouch(SeekBar seekBar) {}
-            public void onStopTrackingTouch(SeekBar seekBar) {calculateMortgage();}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                tooltipTextView1.setVisibility(View.VISIBLE);
+                calculateMortgage();}
         });
         durationSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progressValue = 0;
+            @RequiresApi(api = Build.VERSION_CODES.O)
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressValue = progress;
+                // Display the tooltip TextView with updated text
+                tooltipTextView2.setText((progress) + "Years");
+                tooltipTextView2.setVisibility(View.VISIBLE);
                 calculateMortgage();
             }
             public void onStartTrackingTouch(SeekBar seekBar) {}
-            public void onStopTrackingTouch(SeekBar seekBar) {calculateMortgage();}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                tooltipTextView2.setVisibility(View.VISIBLE);
+                calculateMortgage();}
         });
 
 
@@ -114,12 +127,12 @@ public class MortgageCalculatorActivity extends AppCompatActivity {
         double monthlyPayment = principal * monthlyInterestRate * power / divisor;
         double totalAmount = monthlyPayment * numberOfMonths;
 
-        monthlyPaymentTextView.setText(format("Monthly Payment: £%.2f", monthlyPayment));
-     totalAmountTextView.setText(format("Total Amount: £%.2f", totalAmount));
+        monthlyPaymentTextView.setText(format("Monthly Payment: £%.2f K", monthlyPayment));
+     totalAmountTextView.setText(format("Total Amount: £%.2f K", totalAmount));
 
         InterestRateTextView = findViewById(R.id.InterestRateTextView);
 
-        InterestRateTextView.setText(format("Rate of Interest: %s", calculateInterestRate(depositAmount)));
+        InterestRateTextView.setText(format("Rate of Interest : %s ", calculateInterestRate(depositAmount)));
 
 
     }
@@ -149,8 +162,12 @@ public class MortgageCalculatorActivity extends AppCompatActivity {
         String totalAmountText = totalAmountTextView.getText().toString();
         String InterestRateText =   InterestRateTextView.getText().toString();
         monthlyPaymentText = monthlyPaymentText.replace("Monthly Payment: £", "");
+        monthlyPaymentText=  monthlyPaymentText.replace(" K", "");
         totalAmountText = totalAmountText.replace("Total Amount: £", "");
-        InterestRateText = InterestRateText.replace("Rate of Interest: ", "");
+        totalAmountText=  totalAmountText.replace(" K", "");
+        InterestRateText = InterestRateText.replace("Rate of Interest : ", "");
+
+
 
         double monthlyPayment = Double.parseDouble(monthlyPaymentText);
         double totalAmount = Double.parseDouble(totalAmountText);
@@ -173,6 +190,7 @@ public class MortgageCalculatorActivity extends AppCompatActivity {
             intent.putExtra("totalAmount", totalAmount);
             intent.putExtra("InterestRate", InterestRate);
 
+            intent.putExtra("useremail", userEmail);
             startActivity(intent);
         } else {
             Toast.makeText(this, "Failed to save mortgage calculation!", Toast.LENGTH_SHORT).show();

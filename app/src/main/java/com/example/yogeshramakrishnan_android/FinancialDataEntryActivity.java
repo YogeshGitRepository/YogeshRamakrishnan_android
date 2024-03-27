@@ -58,6 +58,7 @@ public class FinancialDataEntryActivity extends AppCompatActivity {
         if (newRowId != -1) {
             Toast.makeText(this, "Financial data saved successfully", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(FinancialDataEntryActivity.this, FinancialDataReportActivity.class);
+            intent.putExtra("useremail", userEmail);
             startActivity(intent);
         } else {
             Toast.makeText(this, "Failed to save financial data", Toast.LENGTH_SHORT).show();

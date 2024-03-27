@@ -134,11 +134,16 @@ public class DBAdapter {
 
     // Get user ID by email
     public int getUserIdByEmail(String email) {
+        if (email == null) {
+
+            return -1;
+        }
+        SQLiteDatabase dBase = myHelper.getWritableDatabase();
         int userId = -1;
         String[] columns = {"_id"};
         String selection = "Email" + " = ?";
         String[] selectionArgs = {email};
-        Cursor cursor = db.query("UserRegister", columns, selection, selectionArgs, null, null, null);
+        Cursor cursor = dBase.query("UserRegister", columns, selection, selectionArgs, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
             userId = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
             cursor.close();
@@ -148,11 +153,17 @@ public class DBAdapter {
 
     // Get user name by email
     public String getUserNameByEmail(String email) {
+        if (email == null) {
+
+            return null;
+
+        }
+        SQLiteDatabase dBase = myHelper.getWritableDatabase();
         String userName = null;
         String[] columns = {"Name"};
         String selection = "Email" + " = ?";
         String[] selectionArgs = {email};
-        Cursor cursor = db.query("UserRegister", columns, selection, selectionArgs, null, null, null);
+        Cursor cursor = dBase.query("UserRegister", columns, selection, selectionArgs, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
             userName = cursor.getString(cursor.getColumnIndexOrThrow("Name"));
             cursor.close();

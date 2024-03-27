@@ -31,17 +31,21 @@ public class MortgageResultActivity extends AppCompatActivity {
         TextView InterestRateTextView= findViewById(R.id.InterestRateTextView);
 
         currentUserNameTextView.setText(String.format("Customer Name: %s", currentUserName));
-        borrowingAmountTextView.setText(String.format("Borrowing Amount: £%.2f", borrowingAmount));
-        depositAmountTextView.setText(String.format("Deposit Amount: £%.2f", depositAmount));
-        mortgageDurationTextView.setText(String.format("Mortgage Duration: £%.2f", mortgageDuration));
-        monthlyPaymentTextView.setText(String.format("Monthly Payment: £%.2f", monthlyPayment));
-        totalAmountTextView.setText(String.format("Total Amount: £%.2f", totalAmount));
-        InterestRateTextView.setText(String.format("Interest Rate : %s", interestRate));
+        borrowingAmountTextView.setText(String.format("Borrowing Amount: £%.2f K", borrowingAmount));
+        depositAmountTextView.setText(String.format("Deposit Amount: £%.2f K", depositAmount));
+        mortgageDurationTextView.setText(String.format("Mortgage Duration: %s Years", (int)mortgageDuration));
+        monthlyPaymentTextView.setText(String.format("Monthly Payment: £%.2f K", monthlyPayment));
+        totalAmountTextView.setText(String.format("Total Amount: £%.2f K", totalAmount));
+        InterestRateTextView.setText(String.format("Interest Rate : %s", interestRate + " %"));
         btnbackHome = findViewById(R.id.backHome);
         btnbackHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MortgageResultActivity.this, HomeActivity.class));
+                Intent intent = new Intent(MortgageResultActivity.this, HomeActivity.class);
+                String userEmail = getIntent().getStringExtra("useremail");
+                intent.putExtra("useremail", userEmail);
+                startActivity(intent);
+
             }
         });
     }

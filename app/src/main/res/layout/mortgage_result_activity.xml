@@ -22,30 +22,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Customer Name: "
+                android:textStyle="bold"
                 android:textSize="18sp" />
             <TextView
                 android:id="@+id/borrowingAmountTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Borrowing Amount: £0.00"
+                android:textStyle="bold"
                 android:textSize="18sp" />
             <TextView
                 android:id="@+id/depositAmountTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Deposit Amount: £0.00"
+                android:textStyle="bold"
                 android:textSize="18sp" />
             <TextView
                 android:id="@+id/mortgageDurationTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mortgage Duration: £0.00"
+                android:textStyle="bold"
                 android:textSize="18sp" />
             <TextView
                 android:id="@+id/monthlyPaymentTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Monthly Payment: £0.00"
+                android:textStyle="italic"
                 android:textSize="18sp" />
 
             <TextView
@@ -53,6 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Total Amount: £0.00"
+                android:textStyle="italic"
                 android:textSize="18sp" />
 
             <TextView
@@ -60,6 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="InterestRate: 0.00"
+                android:textStyle="italic"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -67,8 +74,15 @@
 
     <Button
         android:id="@+id/backHome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="156dp"
+        android:layout_height="72dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="111dp"
+        android:layout_marginTop="240dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginBottom="419dp"
         android:text="@string/backHome" />
-
 </LinearLayout>
