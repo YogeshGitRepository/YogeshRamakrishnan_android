@@ -119,7 +119,7 @@ public class DBAdapter {
         SQLiteDatabase dBase = myHelper.getReadableDatabase();
         FinancialDataMain financialData = null;
         String[] columns = {DBHelper.take_home_wage, DBHelper.fixed_outgoings, DBHelper.current_rent_or_mortgage, DBHelper.leftover_wage, DBHelper.default_borrow_amount, DBHelper.default_deposit_amount};
-        String selection = userId + " = ?";
+        String selection = DBHelper.userId + " = ?";
         String[] selectionArgs = {String.valueOf(userId)};
         Cursor cursor = dBase.query(DBHelper.tableNameFinancial, columns, selection, selectionArgs, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {

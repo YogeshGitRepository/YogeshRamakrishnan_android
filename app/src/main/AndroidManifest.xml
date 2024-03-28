@@ -29,7 +29,6 @@
         <activity  android:name=".LoginActivity" />
         <activity  android:name=".RegisterActivity" />
         <activity  android:name=".MortgageCalculatorActivity" />
-        <activity  android:name=".MortgageOptionsActivity" />
         <activity  android:name=".MortgageResultActivity" />
         <activity  android:name=".FinancialDataEntryActivity" />
         <activity  android:name=".HomeActivity" />
