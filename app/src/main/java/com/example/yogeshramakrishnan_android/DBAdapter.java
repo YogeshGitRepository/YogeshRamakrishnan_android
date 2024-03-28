@@ -104,6 +104,10 @@ public class DBAdapter {
         SQLiteDatabase dBase = myHelper.getReadableDatabase();
         return dBase.query("FinancialData", null, null, null, null, null, null);
     }
+    public Cursor getAllMortgageData() {
+        SQLiteDatabase dBase = myHelper.getReadableDatabase();
+        return dBase.query("MortgageCalc", null, null, null, null, null, null);
+    }
     public boolean financialDataExists(int userId) {
         SQLiteDatabase dBase = myHelper.getReadableDatabase();
         String selection = DBHelper.userId + " = ?";
@@ -115,6 +119,7 @@ public class DBAdapter {
         }
         return dataExists;
     }
+
     public FinancialDataMain getFinancialData(int userId) {
         SQLiteDatabase dBase = myHelper.getReadableDatabase();
         FinancialDataMain financialData = null;

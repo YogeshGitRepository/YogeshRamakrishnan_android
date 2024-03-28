@@ -10,57 +10,76 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Average Monthly Take Home Wage"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:textColorHint="#757575" />
 
     <EditText
         android:id="@+id/fixedOutgoingsEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Fixed Monthly Outgoings"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:textColorHint="#757575" />
 
     <EditText
         android:id="@+id/currentRentOrMortgageEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Current Monthly Rent or Mortgage"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:textColorHint="#757575" />
 
     <EditText
         android:id="@+id/leftoverWageEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Amount Leftover at the End of the Month"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:textColorHint="#757575" />
 
     <EditText
         android:id="@+id/borrowAmountEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Default Borrow Amount"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:textColorHint="#757575" />
 
     <EditText
         android:id="@+id/depositAmountEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Default Deposit Amount"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:textColorHint="#757575" />
 
     <Button
         android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:insetLeft="15dp"
+        android:insetRight="15dp"
         android:text="Save Financial Data" />
+
     <Button
         android:id="@+id/updateButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:insetLeft="15dp"
+        android:insetRight="15dp"
         android:text="Update Financial Data" />
 
     <Button
         android:id="@+id/deleteButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:insetLeft="15dp"
+        android:insetRight="15dp"
         android:text="Delete Financial Data" />
 </LinearLayout>

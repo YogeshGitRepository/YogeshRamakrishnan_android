@@ -49,9 +49,15 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter your email", Toast.LENGTH_SHORT).show();
             return;
         }
+     if (!isValidEmail(email)) {
+        Toast.makeText(this, "Invalid email address", Toast.LENGTH_SHORT).show();
 
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Please enter a password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(confirmPassword)) {
+            Toast.makeText(this, "Please enter Confirm password", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -74,5 +80,9 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(RegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
         }
     }
+
 }
 
+    private boolean isValidEmail(CharSequence target) {
+        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }

@@ -36,7 +36,7 @@ public class MortgageResultActivity extends AppCompatActivity {
         mortgageDurationTextView.setText(String.format("Mortgage Duration: %s Years", (int)mortgageDuration));
         monthlyPaymentTextView.setText(String.format("Monthly Payment: £%.2f K", monthlyPayment));
         totalAmountTextView.setText(String.format("Total Amount: £%.2f K", totalAmount));
-        InterestRateTextView.setText(String.format("Interest Rate : %s", interestRate + " %"));
+        InterestRateTextView.setText(String.format("Interest Rate : %s", interestRate *(100) + " %"));
         btnbackHome = findViewById(R.id.backHome);
         btnbackHome.setOnClickListener(new View.OnClickListener() {
             @Override

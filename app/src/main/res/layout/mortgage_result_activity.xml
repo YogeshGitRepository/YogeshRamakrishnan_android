@@ -92,5 +92,6 @@
         android:layout_marginTop="240dp"
         android:layout_marginEnd="156dp"
         android:layout_marginBottom="419dp"
-        android:text="@string/backHome" />
+        android:text="@string/backHome"
+        android:textColor="#D7CCC8" />
 </LinearLayout>
