@@ -50,8 +50,9 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
      if (!isValidEmail(email)) {
-        Toast.makeText(this, "Invalid email address", Toast.LENGTH_SHORT).show();
-
+         Toast.makeText(this, "Invalid email address", Toast.LENGTH_SHORT).show();
+         return;
+     }
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Please enter a password", Toast.LENGTH_SHORT).show();
             return;
@@ -69,8 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
         //  Implement registration logic
         long result = dbAdapter.signUp(fullName,email, password,confirmPassword);
         if (result != -1) {
-            Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
-            // Registration successful, redirect to login activity
+           
             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             intent.putExtra("useremail", email);
             startActivity(intent);
@@ -81,8 +81,11 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-}
+
+
 
     private boolean isValidEmail(CharSequence target) {
         return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
+
+}
